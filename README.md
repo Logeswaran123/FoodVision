@@ -26,6 +26,7 @@ Food Vision 101 is a dataset consisting of 101k images belonging to **101 classe
 ├── utils.py<br />
 </pre>
 <br />
+
 * Download the data from [High Quality Monocular Depth Estimation](https://github.com/nianticlabs/monodepth2/), and place the unzipped items in /data directory
 * data_modification.py script is used to prepare the dataset into train and test splits for training and testing the CNN model
 * model.py script contains the architecture of the model

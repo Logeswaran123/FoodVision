@@ -8,3 +8,27 @@ Food Vision 101 is a dataset consisting of 101k images belonging to **101 classe
 4. Build a streamlit application to upload image, and run prediction on uploaded image using model from (2). Display Top-5 classes of predictions.
 
 ##
+Directory structure
+.
+├── data
+├── streamlit
+    ├── models
+        ├── foodvision101_model_3_fine_tuned.h5
+    ├── images
+    ├── app.py
+    ├── utils.py
+    ├── classes.txt
+├── data_modification.py
+├── food_vision.py
+├── model.py
+├── preprocess.py
+├── fine_tuning.py
+├── utils.py
+
+- Download the data from [kaggle source|https://www.kaggle.com/datasets/dansbecker/food-101], and place the unzipped items in /data directory.
+- data_modification.py script is used to prepare the dataset into train and test splits for training and testing the CNN model.
+- model.py script contains the architecture of the model.
+- food_vision.py is the base script the need to be run to train/test, and save the feature extraction model.
+- fine_tuning.py script is used for fine tuning the feature extraction model and improve the accuracy/loss metrics.
+- preprocess.py script contains the preprocess function for train and test data.
+- utils.py script contains the utility functions.

@@ -8,8 +8,8 @@ Food Vision 101 is a dataset consisting of 101k images belonging to **101 classe
 4. Build a streamlit application to upload image, and run prediction on uploaded image using model from (2). Display Top-5 classes of predictions.
 
 ## Directory structure
-.<br>
 <pre>
+.<br>
 ├── data<br>
 ├── streamlit<br>
     ├── models<br>

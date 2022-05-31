@@ -9,9 +9,10 @@ Food Vision 101 is a dataset consisting of 101k images belonging to **101 classe
 
 ## Directory structure
 .<br>
+<pre>
 ├── data<br>
 ├── streamlit<br>
-&nbsp; &nbsp; &nbsp;    ├── models<br>
+    ├── models<br>
         ├── foodvision101_model_3_fine_tuned.h5<br>
     ├── images<br>
     ├── app.py<br>
@@ -23,6 +24,7 @@ Food Vision 101 is a dataset consisting of 101k images belonging to **101 classe
 ├── preprocess.py<br>
 ├── fine_tuning.py<br>
 ├── utils.py<br>
+</pre>
 <br>
 - Download the data from [kaggle source|https://www.kaggle.com/datasets/dansbecker/food-101], and place the unzipped items in /data directory.
 - data_modification.py script is used to prepare the dataset into train and test splits for training and testing the CNN model.

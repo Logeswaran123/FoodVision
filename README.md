@@ -10,7 +10,7 @@ Food Vision 101 is a dataset consisting of 101k images belonging to **101 classe
 ##
 Directory structure
 .
-├── data
+├── data<br>
 ├── streamlit
     ├── models
         ├── foodvision101_model_3_fine_tuned.h5

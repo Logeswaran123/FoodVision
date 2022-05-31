@@ -7,24 +7,23 @@ Food Vision 101 is a dataset consisting of 101k images belonging to **101 classe
 3. Fine tune the model from (1) by unfreezing the layers. Since, we have large dataset it is good to unfreeze all the layers.
 4. Build a streamlit application to upload image, and run prediction on uploaded image using model from (2). Display Top-5 classes of predictions.
 
-##
-Directory structure
-.
+## Directory structure
+.<br>
 ├── data<br>
-├── streamlit
-    ├── models
-        ├── foodvision101_model_3_fine_tuned.h5
-    ├── images
-    ├── app.py
-    ├── utils.py
-    ├── classes.txt
-├── data_modification.py
-├── food_vision.py
-├── model.py
-├── preprocess.py
-├── fine_tuning.py
-├── utils.py
-
+├── streamlit<br>
+    ├── models<br>
+        ├── foodvision101_model_3_fine_tuned.h5<br>
+    ├── images<br>
+    ├── app.py<br>
+    ├── utils.py<br>
+    ├── classes.txt<br>
+├── data_modification.py<br>
+├── food_vision.py<br>
+├── model.py<br>
+├── preprocess.py<br>
+├── fine_tuning.py<br>
+├── utils.py<br>
+<br>
 - Download the data from [kaggle source|https://www.kaggle.com/datasets/dansbecker/food-101], and place the unzipped items in /data directory.
 - data_modification.py script is used to prepare the dataset into train and test splits for training and testing the CNN model.
 - model.py script contains the architecture of the model.

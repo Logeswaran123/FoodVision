@@ -26,7 +26,7 @@ Food Vision 101 is a dataset consisting of 101k images belonging to **101 classe
 ├── utils.py<br />
 </pre>
 <br />
-* Download the data from [kaggle source](https://www.kaggle.com/datasets/dansbecker/food-101), and place the unzipped items in /data directory
+* Download the data from [kaggle source](https://www.kaggle.com/datasets/dansbecker/food-101/), and place the unzipped items in /data directory
 * data_modification.py script is used to prepare the dataset into train and test splits for training and testing the CNN model
 * model.py script contains the architecture of the model
 * food_vision.py is the base script the need to be run to train/test, and save the feature extraction model

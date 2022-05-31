@@ -34,3 +34,4 @@ Food Vision 101 is a dataset consisting of 101k images belonging to **101 classe
 * fine_tuning.py script is used for fine tuning the feature extraction model and improve the accuracy/loss metrics.
 * preprocess.py script contains the preprocess function for train and test data.
 * utils.py script contains the utility functions.
+* /streamlit dir contains the streamlit application.

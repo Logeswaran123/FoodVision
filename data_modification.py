@@ -128,7 +128,7 @@ def main():
     assert len(classes) == 101
 
     parent_folder = args["images"]
-    new_subset = "train_test_split2"
+    new_subset = "train_test_split"
     datasets = ["train", "test"]
 
     # Copy training/test images

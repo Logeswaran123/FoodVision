@@ -48,4 +48,5 @@ Note:<br />
 
 *<path to classes.txt\>* - Path to "/archive/meta/meta/classes.txt"<br />
 *<path to archive\>* - Path to "/archive". archive is the unzipped directory from [KAGGLE SOURCE](https://www.kaggle.com/datasets/kmader/food41).
+train_test_split directory is created inside *<path to archive\>*.
 

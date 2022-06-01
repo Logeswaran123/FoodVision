@@ -37,13 +37,16 @@ Food Vision 101 is a dataset consisting of 101k images belonging to **101 classe
 * utils.py script contains the utility functions.
 * /streamlit directory contains the streamlit application.
 
-## How Tos
+## How to run
 ### Data Modification
 Before starting to work with building the model, it is necessary to split the raw data into training and testing sets. The images are split into train and test sets based on the train.json and test.json files respectively. The entire dataset of 101k images is split into 75750 train images and 25250 test images. The train and test splits are ordered in their respective classes directories. To convert raw data into train and test splits, run the following command,
+<br />
 ```python
 python data_modification.py --classes *<path to classes.txt>* --images *<path to archive>*
 ```
-Note:
-*<path to classes.txt>* - Path to "/archive/meta/meta/classes.txt"
+<br />
+
+Note:<br />
+*<path to classes.txt>* - Path to "/archive/meta/meta/classes.txt"<br />
 *<path to archive>* - Path to "/archive". archive is the unzipped directory from [KAGGLE SOURCE](https://www.kaggle.com/datasets/kmader/food41).
 

@@ -3,12 +3,18 @@ FoodVision101
 
 Split Dataset into train and test split
 """
-
+import argparse
 import json
 import os
 import random
 import shutil
 import tqdm
+
+# Construct the argument parser and parse the arguments
+ap = argparse.ArgumentParser()
+ap.add_argument("-c",  "--classes",  required=True, help="Path to classes text file", type=str)
+ap.add_argument("-img", "--images", required=True, help="Path to raw images", type=str)
+args = vars(ap.parse_args())
 
 # Get labels
 def get_labels(label_path):
@@ -37,20 +43,21 @@ def copy_images(parent_folder, new_subset, dataset, target_labels):
     """
     # Get the appropriate labels
     print(f"\nUsing {dataset} labels...")
-    labels = get_labels("C://Users//loges//Documents//Datasets//FoodVision//archive//meta//meta//" + dataset + ".json")
+    meta_folder = parent_folder + "\\meta\\meta\\"
+    labels = get_labels(meta_folder + dataset + ".json")
 
     # Loop through target labels
     for i in target_labels:
         # Make target directory
-        os.makedirs(parent_folder + "/" + new_subset + "/" + dataset + "/" + i,
+        os.makedirs(parent_folder + "\\" + new_subset + "\\" + dataset + "\\" + i,
                     exist_ok=True)
 
         # Go through labels and get appropriate classes
         images_moved = [] # Keep track of images moved
         for j in labels[i]:
             # Create original image path and new path
-            og_path = parent_folder + "/images/" + j + ".jpg"
-            new_path = parent_folder + "/" + new_subset + "/" + dataset + "/" + j + ".jpg"
+            og_path = parent_folder + "\\images\\" + j + ".jpg"
+            new_path = parent_folder + "\\" + new_subset + "\\" + dataset + "\\" + j + ".jpg"
 
             # Copy images from old path to new path
             shutil.copy2(og_path, new_path)
@@ -112,23 +119,16 @@ def get_percent_images(target_dir, new_dir, sample_amount=0.1, random_state=42):
 
 
 def main():
-    train_labels_path = r"C:\Users\loges\Documents\Datasets\FoodVision\archive\meta\meta\train.json"
-    test_labels_path = r"C:\Users\loges\Documents\Datasets\FoodVision\archive\meta\meta\test.json"
-    train_labels = get_labels(train_labels_path)
-    test_labels = get_labels(test_labels_path)
-    print("Train labels: ", train_labels)
-    print("Test labels: ", test_labels)
-
     # Get all classnames
     classes = []
-    with open(r"C:\Users\loges\Documents\Datasets\FoodVision\archive\meta\meta\classes.txt") as file:
+    with open(args["classes"]) as file:
         for line in file.readlines():
             classes.append(line.split("\n")[0])
 
     assert len(classes) == 101
 
-    parent_folder = "C://Users//loges//Documents//Datasets//FoodVision//archive"
-    new_subset = "train_test_split"
+    parent_folder = args["images"]
+    new_subset = "train_test_split2"
     datasets = ["train", "test"]
 
     # Copy training/test images

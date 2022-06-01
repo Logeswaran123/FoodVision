@@ -3,6 +3,7 @@ FoodVision101
 
 Fine tuning the model saved from food_vision.py
 """
+import argparse
 import math
 import tensorflow as tf
 
@@ -10,8 +11,18 @@ from preprocess import preprocess
 from utils import create_tensorboard_callback
 
 SEED=42
-INITIAL_LR = 0.0001
+INITIAL_LR = 0.0001 # fine tuning lr should be 10x lower than feature extraction lr
 tf.random.set_seed(SEED)
+
+# Construct the argument parser and parse the arguments
+ap = argparse.ArgumentParser()
+ap.add_argument("-tr",  "--train",  required=True, help="Path to train dataset directory", type=str)
+ap.add_argument("-te", "--test", required=True, help="Path to test dataset directory", type=str)
+ap.add_argument("-m", "--saved_model", required=True, help="Path to saved feature extraction model", type=str)
+ap.add_argument("-s", "--save", required=True, help="Path to save checkpoints, tensorboard event logs, model", type=str)
+ap.add_argument("-name", "--model_name", required=True, help="Name of the fine tuned model to be saved", type=str)
+ap.add_argument("-e", "--epoch", required=True, help="Number of epochs to train", default=100, type=int)
+args = vars(ap.parse_args())
 
 def lr_step_decay(epoch, lr):
     """
@@ -23,12 +34,12 @@ def lr_step_decay(epoch, lr):
 
 def main():
     # Load model
-    saved_model_path = r"C:\Users\loges\Documents\Tensorflow Practice Dir\ComputerVision\FoodVision\foodvision101_model_3.h5"
+    saved_model_path = args["saved_model"]
     cnn_model = tf.keras.models.load_model(saved_model_path)
     cnn_model.summary()
 
-    train_dir = r"C:\Users\loges\Documents\Datasets\FoodVision\archive\train_test_split\train"
-    test_dir = r"C:\Users\loges\Documents\Datasets\FoodVision\archive\train_test_split\test"
+    train_dir = args["train"]
+    test_dir = args["test"]
     # Preprocess for model
     train_data, test_data = preprocess(train_dir=train_dir,
                                         test_dir=test_dir,
@@ -56,8 +67,10 @@ def main():
                                                     verbose=1,
                                                     min_lr=1e-7)
 
+    save_dir = args["save"]
+
     # Create ModelCheckpoint callback to save model's progress
-    checkpoint_path = "model_checkpoints/FineTune/model_1.ckpt"
+    checkpoint_path = save_dir + "/model_checkpoints/FineTune/model_1.ckpt"
     model_checkpoint = tf.keras.callbacks.ModelCheckpoint(checkpoint_path,
                                                       montior="val_accuracy",
                                                       save_best_only=True,
@@ -67,8 +80,8 @@ def main():
     lr_scheduler = tf.keras.callbacks.LearningRateScheduler(lr_step_decay, verbose=1)
 
     # Create Tensorboard callback
-    tensorboard_callback = create_tensorboard_callback("training_logs",
-                            "efficientnetb0_101_classes_all_data_fine_tuned")
+    tensorboard_callback = create_tensorboard_callback(save_dir + "/training_logs",
+                                                    "fine_tuned")
 
     # Compile the model
     cnn_model.compile(loss="categorical_crossentropy",
@@ -77,7 +90,7 @@ def main():
 
     # Fit the model
     cnn_model.fit(train_data,
-                  epochs=100,
+                  epochs=args["epoch"],
                   steps_per_epoch=len(train_data),
                   validation_data=test_data,
                   validation_steps=int(0.15 * len(test_data)),
@@ -88,10 +101,10 @@ def main():
                             reduce_lr])
 
     # Save the model
-    cnn_model.save('foodvision101_model_3_fine_tuned.h5')
+    cnn_model.save(save_dir + "/" + args["model_name"] + ".h5")
 
     # Load the saved fine_tuned model, and evaluate on test data
-    saved_fine_tuned_model_path = r"C:\Users\loges\Documents\Tensorflow Practice Dir\ComputerVision\FoodVision\foodvision101_model_3_fine_tuned.h5"
+    saved_fine_tuned_model_path = save_dir + "/" + args["model_name"] + ".h5"
     fine_tuned_cnn_model = tf.keras.models.load_model(saved_fine_tuned_model_path)
     fine_tuned_cnn_model.summary()
     fine_tuned_cnn_model.evaluate(test_data)

@@ -28,9 +28,12 @@ tf.random.set_seed(SEED)
 ap = argparse.ArgumentParser()
 ap.add_argument("-tr",  "--train",  required=True, help="Path to train dataset directory", type=str)
 ap.add_argument("-te", "--test", required=True, help="Path to test dataset directory", type=str)
-ap.add_argument("-s", "--save", required=True, help="Path to save checkpoints, tensorboard event logs, model", type=str)
-ap.add_argument("-name", "--model_name", required=True, help="Name of the feature extraction model to be saved", type=str)
-ap.add_argument("-e", "--epoch", required=True, help="Number of epochs to train", default=10, type=int)
+ap.add_argument("-s", "--save", required=True,
+                help="Path to save checkpoints, tensorboard event logs, model", type=str)
+ap.add_argument("-name", "--model_name", required=True,
+                help="Name of the feature extraction model to be saved", type=str)
+ap.add_argument("-e", "--epoch", required=True,
+                help="Number of epochs to train", default=10, type=int)
 args = vars(ap.parse_args())
 
 def lr_step_decay(epoch, lr):

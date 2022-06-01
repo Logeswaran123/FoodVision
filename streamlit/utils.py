@@ -10,23 +10,21 @@ import tensorflow as tf
 import streamlit as st
 
 
-def get_class_names():
+def get_class_names(classes_path: str):
     """
     Return list of class names
     """
-    path = r"C:\Users\loges\Documents\Tensorflow Practice Dir\ComputerVision\FoodVision\streamlit\classes.txt"
-    with open(path) as file:
+    with open(classes_path) as file:
         lines = file.readlines()
     classes = []
     for line in lines:
         classes.append(line.replace("\n", ""))
     return classes
 
-def load_model():
+def load_model(model_path: str):
     """
     Load the model
     """
-    model_path = r"C:\Users\loges\Documents\Tensorflow Practice Dir\ComputerVision\FoodVision\streamlit\models\foodvision101_model_3_fine_tuned.h5"
     model = tf.keras.models.load_model(model_path)
     return model
 
@@ -53,12 +51,12 @@ def load_image():
         image = preprocess(image, [224, 224])
     return image
 
-def predict(model: Any, image: Any):
+def predict(classes_path: str, model: Any, image: Any):
     """
     Predict the class name from image
     """
     k = 5
-    class_names = get_class_names()
+    class_names = get_class_names(classes_path)
     pred_prob = model.predict(tf.expand_dims(image, axis=0))
     pred_probs_topk, pred_indices_topk = tf.math.top_k(pred_prob, k=k, sorted=True)
     size = tf.size(pred_indices_topk)

@@ -62,8 +62,8 @@ Note:<br />
 
 *<path to train set\>* - Path to train dataset directory<br />
 *<path to test set\>* - Path to test dataset directory<br />
-*<path to save directory\>* - Path to save checkpoints, tensorboard event logs, model
-*<name of the model to save\>* - Name of the feature extraction model to be saved
+*<path to save directory\>* - Path to save checkpoints, tensorboard event logs, model<br />
+*<name of the model to save\>* - Name of the feature extraction model to be saved<br />
 *<number of epochs to train\>* - Number of epochs to train. Default: 10
 
 ### Fine Tuning
@@ -76,7 +76,7 @@ Note:<br />
 
 *<path to train set\>* - Path to train dataset directory<br />
 *<path to test set\>* - Path to test dataset directory<br />
-*<path to saved model\>* - Path to saved feature extraction model
-*<path to save directory\>* - Path to save checkpoints, tensorboard event logs, model
-*<name of the model to save\>* - Name of the fine tuned model to be saved
+*<path to saved model\>* - Path to saved feature extraction model<br />
+*<path to save directory\>* - Path to save checkpoints, tensorboard event logs, model<br />
+*<name of the model to save\>* - Name of the fine tuned model to be saved<br />
 *<number of epochs to train\>* - Number of epochs to train. Default: 100

@@ -44,7 +44,6 @@ Before starting to work with building the model, it is necessary to split the ra
 ```python
 python data_modification.py --classes <path to classes.txt> --images <path to archive>
 ```
-<br />
 Note:<br />
 
 *<path to classes.txt\>* - Path to "/archive/meta/meta/classes.txt"<br />

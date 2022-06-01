@@ -9,22 +9,22 @@ Food Vision 101 is a dataset consisting of 101k images belonging to **101 classe
 
 ## Directory structure
 <pre>
-.<br />
-├── data<br />
+.
+├── data
     ├── FoodVision
-├── streamlit<br />
-    ├── models<br />
-        ├── foodvision101_model_3_fine_tuned.h5<br />
-    ├── images<br />
-    ├── app.py<br />
-    ├── utils.py<br />
-    ├── classes.txt<br />
-├── data_modification.py<br />
-├── food_vision.py<br />
-├── model.py<br />
-├── preprocess.py<br />
-├── fine_tuning.py<br />
-├── utils.py<br />
+├── streamlit
+    ├── models
+        ├── foodvision101_model_3_fine_tuned.h5
+    ├── images
+    ├── app.py
+    ├── utils.py
+    ├── classes.txt
+├── data_modification.py
+├── food_vision.py
+├── model.py
+├── preprocess.py
+├── fine_tuning.py
+├── utils.py
 </pre>
 <br />
 
@@ -45,8 +45,8 @@ Before starting to work with building the model, it is necessary to split the ra
 python data_modification.py --classes *<path to classes.txt>* --images *<path to archive>*
 ```
 <br />
-
 Note:<br />
-*<path to classes.txt>* - Path to "/archive/meta/meta/classes.txt"<br />
-*<path to archive>* - Path to "/archive". archive is the unzipped directory from [KAGGLE SOURCE](https://www.kaggle.com/datasets/kmader/food41).
+
+**<path to classes.txt>** - Path to "/archive/meta/meta/classes.txt"<br />
+**<path to archive>** - Path to "/archive". archive is the unzipped directory from [KAGGLE SOURCE](https://www.kaggle.com/datasets/kmader/food41).
 

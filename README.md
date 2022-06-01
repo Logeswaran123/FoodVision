@@ -11,6 +11,7 @@ Food Vision 101 is a dataset consisting of 101k images belonging to **101 classe
 <pre>
 .<br />
 ├── data<br />
+    ├── FoodVision
 ├── streamlit<br />
     ├── models<br />
         ├── foodvision101_model_3_fine_tuned.h5<br />
@@ -27,11 +28,22 @@ Food Vision 101 is a dataset consisting of 101k images belonging to **101 classe
 </pre>
 <br />
 
-* Download the data from [KAGGLE SOURCE](https://www.kaggle.com/datasets/dansbecker/food-101), and place the unzipped items in /data directory.
+* Download the data from [KAGGLE SOURCE](https://www.kaggle.com/datasets/kmader/food41), and place the unzipped items in /data/FoodVision directory.
 * data_modification.py script is used to prepare the dataset into train and test splits for training and testing the CNN model.
 * model.py script contains the architecture of the model.
 * food_vision.py is the base script the need to be run to train/test, and save the feature extraction model.
 * fine_tuning.py script is used for fine tuning the feature extraction model and improve the accuracy/loss metrics.
 * preprocess.py script contains the preprocess function for train and test data.
 * utils.py script contains the utility functions.
-* /streamlit dir contains the streamlit application.
+* /streamlit directory contains the streamlit application.
+
+## How Tos
+### Data Modification
+Before starting to work with building the model, it is necessary to split the raw data into training and testing sets. The images are split into train and test sets based on the train.json and test.json files respectively. The entire dataset of 101k images is split into 75750 train images and 25250 test images. The train and test splits are ordered in their respective classes directories. To convert raw data into train and test splits, run the following command,
+```python
+python data_modification.py --classes *<path to classes.txt>* --images *<path to archive>*
+```
+Note:
+*<path to classes.txt>* - Path to "/archive/meta/meta/classes.txt"
+*<path to archive>* - Path to "/archive". archive is the unzipped directory from [KAGGLE SOURCE](https://www.kaggle.com/datasets/kmader/food41).
+

@@ -46,6 +46,7 @@ python data_modification.py --classes <path to classes.txt> --images <path to ar
 ```
 <br />
 Note:<br />
+
 *<path to classes.txt\>* - Path to "/archive/meta/meta/classes.txt"<br />
 *<path to archive\>* - Path to "/archive". archive is the unzipped directory from [KAGGLE SOURCE](https://www.kaggle.com/datasets/kmader/food41).
 

@@ -50,3 +50,33 @@ Note:<br />
 *<path to archive\>* - Path to "/archive". archive is the unzipped directory from [KAGGLE SOURCE](https://www.kaggle.com/datasets/kmader/food41).<br />
 train_test_split directory is created inside *<path to archive\>*.
 
+### Feature Extraction
+Now, there are many SOTA image classification model available that have been trained on large datasets. We can use one such model *EfficientNetB0* that is trained on ImageNet dataset (~14 million images). tf.keras.applications allows to use such model with pre-trained weights. Such models can be fitted to the scope of the task here. In this step, except final few layers that are added for the scope of task, other layers are frozen (i.e.non-trainable). Refer model.py to understand how keras application is used for utilizing EfficientNetB0 with pre-trained weights.
+
+To fit the model to FoodVision 101 dataset, run the following command,
+<br />
+```python
+python food_vision.py --train <path to train set> --test <path to test set> --save <path to save directory> --model_name <name of the model to save> --epoch <number of epochs to train>
+```
+Note:<br />
+
+*<path to train set\>* - Path to train dataset directory<br />
+*<path to test set\>* - Path to test dataset directory<br />
+*<path to save directory\>* - Path to save checkpoints, tensorboard event logs, model
+*<name of the model to save\>* - Name of the feature extraction model to be saved
+*<number of epochs to train\>* - Number of epochs to train. Default: 10
+
+### Fine Tuning
+Alright! Let's use the saved model from *Feature Extraction* step, unfreeze all the layers (i.e.all layers as trainable). Now, fitting the model on the FoodVision101 dataset will improve the model's loss/accuracy. In this step, the initial learning rate will always be 10 times less than the initial learning rate used in Feature Extraction step. This step is the final push to improve the model's performance. Run the following command,
+<br />
+```python
+python fine_tuning.py --train <path to train set> --test <path to test set> --saved_model <path to saved model> --save <path to save directory> --model_name <name of the model to save> --epoch <number of epochs to train>
+```
+Note:<br />
+
+*<path to train set\>* - Path to train dataset directory<br />
+*<path to test set\>* - Path to test dataset directory<br />
+*<path to saved model\>* - Path to saved feature extraction model
+*<path to save directory\>* - Path to save checkpoints, tensorboard event logs, model
+*<name of the model to save\>* - Name of the fine tuned model to be saved
+*<number of epochs to train\>* - Number of epochs to train. Default: 100

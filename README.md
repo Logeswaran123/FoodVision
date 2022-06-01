@@ -67,7 +67,9 @@ Note:<br />
 *<number of epochs to train\>* - Number of epochs to train. Default: 10
 
 ### Fine Tuning
-Alright! Let's use the saved model from *Feature Extraction* step, unfreeze all the layers (i.e.all layers as trainable). Now, fitting the model on the FoodVision101 dataset will improve the model's loss/accuracy. In this step, the initial learning rate will always be 10 times less than the initial learning rate used in Feature Extraction step. This step is the final push to improve the model's performance. Run the following command,
+Alright! Let's use the saved model from *Feature Extraction* step, unfreeze all the layers (i.e.all layers as trainable). Now, fitting the model on the FoodVision101 dataset will improve the model's loss/accuracy. In this step, the initial learning rate will always be 10 times less than the initial learning rate used in Feature Extraction step. This step is the final push to improve the model's performance.
+
+To fine tune the model from previous step, run the following command,
 <br />
 ```python
 python fine_tuning.py --train <path to train set> --test <path to test set> --saved_model <path to saved model> --save <path to save directory> --model_name <name of the model to save> --epoch <number of epochs to train>

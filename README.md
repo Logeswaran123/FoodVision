@@ -84,7 +84,7 @@ Note:<br />
 *<number of epochs to train\>* - Number of epochs to train. Default: 100
 
 ## Streamlit
-Streamlit is an open-source framework that helps to build an application with few lines of code. Check it out [Streamlit](https://streamlit.io/).
+Streamlit is an open-source framework that helps to build an application with few lines of code. Cool stuff! Check it out [Streamlit](https://streamlit.io/).
 
 To run the FoodVision 101 application, clone the repository, and run the following commands,
 ```python
